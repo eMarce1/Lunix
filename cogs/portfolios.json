@@ -1,3 +1,89 @@
 {
-  
+    "673117307555282944": {
+        "purchases": [
+            {
+                "stock": "AAPL",
+                "amount": 20,
+                "timestamp": 1721204487
+            },
+            {
+                "stock": "GOOGL",
+                "amount": 30,
+                "timestamp": 1721204497
+            },
+            {
+                "stock": "NVDA",
+                "amount": 50,
+                "timestamp": 1721206808
+            },
+            {
+                "stock": "AAPL",
+                "amount": 20,
+                "timestamp": 1721207705
+            },
+            {
+                "stock": "FB",
+                "amount": 60,
+                "timestamp": 1721208796
+            },
+            {
+                "stock": "AAPL",
+                "amount": 60,
+                "timestamp": 1721209602
+            },
+            {
+                "stock": "AAPL",
+                "amount": 20,
+                "timestamp": 1721210096
+            },
+            {
+                "stock": "TSLA",
+                "amount": 1,
+                "timestamp": 1721210560
+            },
+            {
+                "stock": "AAPL",
+                "amount": 100,
+                "timestamp": 1721213097
+            },
+            {
+                "stock": "MSFT",
+                "amount": 10000,
+                "timestamp": 1721221198
+            }
+        ],
+        "GOOGL": 10,
+        "sales": [
+            {
+                "stock": "GOOGL",
+                "amount": 20,
+                "timestamp": 1721204503
+            },
+            {
+                "stock": "AAPL",
+                "amount": 15,
+                "timestamp": 1721207448
+            },
+            {
+                "stock": "FB",
+                "amount": 50,
+                "timestamp": 1721209194
+            },
+            {
+                "stock": "AAPL",
+                "amount": 10,
+                "timestamp": 1721210824
+            },
+            {
+                "stock": "AAPL",
+                "amount": 95,
+                "timestamp": 1721212668
+            }
+        ],
+        "NVDA": 50,
+        "FB": 10,
+        "TSLA": 1,
+        "AAPL": 100,
+        "MSFT": 10000
+    }
 }

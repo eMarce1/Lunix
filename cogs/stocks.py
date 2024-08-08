@@ -1,11 +1,12 @@
-import discord
-from discord.ext import commands
-import json
+import os
 
-async def get_stocks_data():
-    with open("./cogs/stocks.json", "r") as f:
-        stock_prices = json.load(f)
-    return stock_prices
+import discord
+from discord.ext import commands, tasks
+import json
+import random
+import time
+from datetime import datetime, timedelta
+import pytz
 
 class Stocks(commands.Cog):
     def __init__(self, bot):
@@ -13,15 +14,39 @@ class Stocks(commands.Cog):
 
     @commands.command()
     async def stocks(self, ctx):
-        user_id = ctx.author.id
-        stock_prices = await get_stocks_data()
-        stock_list = '\n'.join([f'**{stock}: {price}**' for stock, price in stock_prices.items()])
-        embed = discord.Embed(title="📈 Stocks", color=0x00b0f4, description=f"""
-        <@{user_id}>
-        The current stock prices are:\n
-        {stock_list}
-        """)
-        await ctx.reply(embed=embed)
+        """Displays the current stock prices and their growth."""
+        with open("./cogs/stocks.json", "r") as f:
+            stock_data = json.load(f)
+
+        embed = discord.Embed(title="Stock Prices", color=discord.Color.blue())
+
+        for stock, details in stock_data.items():
+            base_price = details.get('base_price', 'N/A')
+            new_price = details.get('new_price', 'N/A')
+            growth = details.get('growth', 0)
+
+            # Format the growth
+            if growth > 0:
+                growth_color = discord.Color.green()
+                growth_arrow = "📈"  # Green arrow up
+            elif growth < 0:
+                growth_color = discord.Color.red()
+                growth_arrow = "📉"  # Red arrow down
+            else:
+                growth_color = discord.Color.default()
+                growth_arrow = ""
+
+            growth_percentage = f"{growth * 100:.2f}%"
+            formatted_growth = f"{growth_arrow} {growth_percentage}"
+
+            # Add stock info to the embed
+            embed.add_field(
+                name=f"{stock} - ${new_price:.2f}",
+                value=f"Growth: {formatted_growth}",
+                inline=False
+            )
+
+        await ctx.send(embed=embed)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Stocks(bot))
